@@ -14,7 +14,7 @@ result = cv2.VideoWriter(
 
 while True:
     _, frame = cap.read()
-    frame = cv2.resize(frame, (300, 300))
+    #frame = cv2.resize(frame, (300, 300))
 
     # video processing
     low_orange = np.array([11, 150, 90])
