@@ -2,11 +2,11 @@ use opencv::{
     Result,
     prelude::*,
     videoio,
-    highgui
+    highgui,
+    imgproc
 };
 
 fn main() -> Result<()>{
-    
     
     // open the web-camera
     let mut camera = videoio::VideoCapture::new(0, videoio::CAP_ANY)?;
@@ -16,9 +16,14 @@ fn main() -> Result<()>{
 
     let mut frame = Mat::default();
 
-    camera.read(&mut frame)?;
-    highgui::imshow("window", &frame)?;
-    highgui::wait_key(0)?;
+    loop {
+        camera.read(&mut frame)?;
+        highgui::imshow("window", &frame)?;
+        let key = highgui::wait_key(1)?;
+        if key == 123 {
+            break;
+        }
+    }
 
     Ok(())
 }
